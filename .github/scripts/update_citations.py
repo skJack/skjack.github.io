@@ -23,6 +23,9 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
 
 def log(msg):
     print(f"{datetime.datetime.now():%Y-%m-%d %H:%M} {msg}", flush=True)
+    if os.environ.get("GITHUB_ACTIONS"):  # show the outcome as an annotation on the run page
+        level = "error" if msg.startswith("ERROR") else "warning" if msg.startswith("WARN") else "notice"
+        print(f"::{level}::{msg}", flush=True)
 
 
 def run(*cmd):
@@ -40,7 +43,7 @@ def norm(title):
 
 def scholar_rows():
     """{normalized title: (citations, cites cluster ids)} from the public profile page."""
-    page = run("curl", "-sfL", "--max-time", "30", "-A", UA,
+    page = run("curl", "-sSfL", "--max-time", "30", "-A", UA,
                "-H", "Accept-Language: en-US,en;q=0.9", PROFILE)
     rows = {}
     for chunk in page.split('<tr class="gsc_a_tr"')[1:]:
@@ -119,5 +122,5 @@ if __name__ == "__main__":
     try:
         sys.exit(main("--dry-run" in sys.argv))
     except subprocess.CalledProcessError as e:
-        log(f"ERROR {' '.join(e.cmd[:3])} failed: {(e.stderr or '').strip()[:300]}")
+        log(f"ERROR {' '.join(e.cmd[:3])} failed: {' '.join((e.stderr or '').split())[:300]}")
         sys.exit(1)
