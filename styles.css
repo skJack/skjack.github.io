@@ -88,7 +88,7 @@ img { max-width: 100%; display: block; }
 .nav-links a[aria-current="true"] { color: var(--seal); }
 
 /* ---- hero ---- */
-.hero { padding: 92px 0 30px; }
+.hero { padding-top: 92px; padding-bottom: 30px; }
 .hero-grid {
   display: grid; grid-template-columns: minmax(0, 1fr) 364px;
   gap: 60px; align-items: start;
@@ -125,14 +125,7 @@ img { max-width: 100%; display: block; }
   to { opacity: 1; transform: rotate(-4deg) translateY(0.32em) scale(1); }
 }
 
-.hero-role {
-  margin: 26px 0 6px; font-size: 21px; font-style: italic; color: var(--ink-2);
-  font-weight: 400; letter-spacing: -0.005em;
-}
-.hero-role a { color: var(--ink); border-bottom: 1px solid var(--line); transition: 0.25s; }
-.hero-role a:hover { color: var(--seal); border-color: var(--seal); }
-
-.hero-bio { margin-top: 20px; max-width: 60ch; color: var(--ink-2); }
+.hero-bio { margin-top: 30px; max-width: 60ch; color: var(--ink-2); }
 .hero-bio p + p { margin-top: 14px; }
 .hero-bio a { color: var(--ink); border-bottom: 1px solid var(--line); transition: 0.25s; }
 .hero-bio a:hover { color: var(--seal); border-color: var(--seal); }
@@ -302,6 +295,14 @@ html:not(.js) .news-toggle, html:not(.js) .group-toggle { display: none; }
   border-radius: 4px; transition: 0.22s; background: var(--card);
 }
 .pub-links a:hover { color: var(--seal); border-color: var(--seal); }
+.cites {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em;
+  color: var(--ink-3); background: #faf8f3; border: 1px solid var(--line);
+  padding: 3px 9px; border-radius: 4px; white-space: nowrap;
+  font-feature-settings: "tnum" 1; transition: 0.22s;
+}
+.cites b { font-weight: 500; color: var(--ink); transition: color 0.22s; }
+.cites:hover, .cites:hover b { color: var(--seal); border-color: var(--seal); }
 
 /* ---- projects ---- */
 .projects-intro {
@@ -483,7 +484,7 @@ html:not(.js) .news-toggle, html:not(.js) .group-toggle { display: none; }
 }
 @media (max-width: 620px) {
   body { font-size: 16.5px; }
-  .container { padding: 0 20px; }
+  .container { padding-left: 20px; padding-right: 20px; }
   .eyebrow { font-size: 11px; letter-spacing: 0.04em; }
   .pub { grid-template-columns: 1fr; gap: 14px; }
   .pub-thumb { max-width: 260px; }
